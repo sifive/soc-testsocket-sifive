@@ -1,0 +1,7 @@
+[
+    {
+        "commit": "cdb7d8a0cd9a374f1cf8ff98c38585ff7e328c65",
+        "name": "api-generator-sifive",
+        "source": "git@github.com:sifive/api-generator-sifive.git"
+    }
+]
