@@ -1,0 +1,50 @@
+
+global def sifiveSkeletonScalaModule =
+  makeScalaModuleFromJSON here "sifiveSkeleton"
+  | setScalaModuleSourceDirs ("src", Nil)
+  | setScalaModuleDeps (rocketchipScalaModule, Nil)
+  | setScalaModuleScalacOptions ("-Xsource:2.11", Nil)
+
+global def simUARTBlock =
+  def module = sifiveSkeletonScalaModule
+  def config = "sifive.skeleton.WithSimUART"
+  makeScalaBlock module config
+
+global def testFinisherBlock =
+  def module = sifiveSkeletonScalaModule
+  def config = "sifive.skeleton.WithTestFinisher"
+  makeScalaBlock module config
+
+global def makeSkeletonDUTPlan name blocks =
+  def testharness = "sifive.skeleton.SkeletonTestHarness"
+  def config = "sifive.skeleton.DefaultConfig"
+  makeRocketChipDUTPlan name sifiveSkeletonScalaModule testharness config
+
+global def makeTestSocketDUT name blocks =
+  def baseDUT =
+    makeSkeletonDUTPlan name Nil
+    | addRocketChipDUTPlanScalaBlock simUARTBlock
+    | addRocketChipDUTPlanScalaBlock testFinisherBlock
+  foldl addRocketChipDUTPlanScalaBlock.flip baseDUT blocks
+
+global def makeBlockTest name block program plusargs =
+  def bootloader = testfilePlusargBootloader
+  def dutFilter dut =
+    match (find (block.getScalaBlockConfig ==~ _) dut.getDUTConfigs)
+      Some _ = True
+      None   = False
+  makeDUTTest name dutFilter program bootloader plusargs
+
+global def testfilePlusargBootloader =
+  def programLoader =
+    def plusarg = "testfile"
+    def memoryRegion = "sram"
+    def score = (\_ \_ 1.0)
+    def compiler = freedomMetalDUTProgramCompiler
+    makePlusargProgramLoader plusarg memoryRegion score compiler
+
+  def bootloader =
+    def score = (\_ \_ 1.0)
+    makeSingleStageBootLoader programLoader score
+
+  bootloader
