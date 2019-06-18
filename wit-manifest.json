@@ -1,7 +1,12 @@
 [
     {
-        "commit": "cdb7d8a0cd9a374f1cf8ff98c38585ff7e328c65",
+        "commit": "be676091e67b6b01b5185147337fb1aff215c44f",
         "name": "api-generator-sifive",
         "source": "git@github.com:sifive/api-generator-sifive.git"
+    },
+    {
+        "commit": "152eafed78299de92b8bc45a930b6164c698cc85",
+        "name": "sifive-blocks",
+        "source": "git@github.com:sifive/sifive-blocks.git"
     }
 ]
