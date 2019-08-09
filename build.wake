@@ -48,3 +48,32 @@ global def testfilePlusargBootloader =
     makeSingleStageBootLoader programLoader score
 
   bootloader
+
+global def fpgaTestSocketScalaModule =
+  def name = "fpgaTestSocket"
+  def scalaVersion = rocketchipScalaModule.getScalaModuleScalaVersion
+  def rootDir = simplify "{here}/design/craft/fpga-test-socket"
+  makeScalaModule name rootDir scalaVersion
+  | setScalaModuleSourceDirs ("src", Nil)
+  | setScalaModuleResourceDirs Nil
+  | setScalaModuleDeps (
+    u500ScalaModule,
+    sifiveSkeletonScalaModule,
+    rocketchipScalaModule,
+    Nil
+  )
+  | setScalaModuleScalacOptions ("-Xsource:2.11", Nil)
+
+global def makeVC707TestSocketDUT name frequency blocks =
+  def configs = "sifive.skeleton.FPGATestSocketConfig", "sifive.skeleton.WithTestSocketFPGADevKitDesign", Nil
+  def scalaModules = fpgaTestSocketScalaModule, Nil
+  def baseDUT = makeVC707DUTPlan name frequency configs scalaModules
+  foldl addRocketChipDUTPlanScalaBlock.flip baseDUT blocks
+
+publish vivadoVsrcHooks =
+  def makeSource file _ = source file, Nil
+  makeBlackBoxHook "PowerOnResetFPGAOnly" "fpga-shells/xilinx/common/vsrc/PowerOnResetFPGAOnly.v".makeSource,
+  makeBlackBoxHook "EICG_wrapper" "rocket-chip/src/main/resources/vsrc/EICG_wrapper.v".makeSource,
+  makeBlackBoxHook "pio"          "{blockPIOSifiveRoot}/rtl/pio/pio.sv".makeSource,
+  makeBlackBoxHook "loopback"     "{blockPIOSifiveRoot}/rtl/loopback/loopback.sv".makeSource,
+  Nil
