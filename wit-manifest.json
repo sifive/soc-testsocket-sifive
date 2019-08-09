@@ -20,7 +20,7 @@
         "source": "git@github.com:freechipsproject/firrtl.git"
     },
     {
-        "commit": "31c7892978a857d8e934f790af4bd9fc408526f6",
+        "commit": "1978d86e39dbc4cdce8ca7a3c9b2827dda11460f",
         "name": "soc-freedom-sifive",
         "source": "git@github.com:sifive/soc-freedom-sifive.git"
     }
