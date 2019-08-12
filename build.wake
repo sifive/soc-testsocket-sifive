@@ -74,6 +74,4 @@ publish vivadoVsrcHooks =
   def makeSource file _ = source file, Nil
   makeBlackBoxHook "PowerOnResetFPGAOnly" "fpga-shells/xilinx/common/vsrc/PowerOnResetFPGAOnly.v".makeSource,
   makeBlackBoxHook "EICG_wrapper" "rocket-chip/src/main/resources/vsrc/EICG_wrapper.v".makeSource,
-  makeBlackBoxHook "pio"          "{blockPIOSifiveRoot}/rtl/pio/pio.sv".makeSource,
-  makeBlackBoxHook "loopback"     "{blockPIOSifiveRoot}/rtl/loopback/loopback.sv".makeSource,
   Nil
