@@ -65,10 +65,18 @@ global def fpgaTestSocketScalaModule =
   | setScalaModuleScalacOptions ("-Xsource:2.11", Nil)
 
 global def makeVC707TestSocketDUT name frequency blocks =
-  def configs = "sifive.testsocket.fpga.FPGATestSocketConfig", "sifive.testsocket.fpga.WithTestSocketFPGADevKitDesign", Nil
-  def scalaModules = fpgaTestSocketScalaModule, Nil
-  def baseDUT = makeVC707DUTPlan name frequency configs scalaModules
+  def configs =
+    "sifive.testsocket.fpga.FPGATestSocketConfig",
+    "sifive.testsocket.fpga.WithTestSocketFPGADevKitDesign",
+    Nil
+  def scalaModule = fpgaTestSocketScalaModule
+  def testharness = "sifive.fpgashells.shell.xilinx.VC707Shell"
+  def baseDUT =
+    makeRocketChipDUTPlan name scalaModule testharness ""
+    | setRocketChipDUTPlanConfigs configs
   foldl addRocketChipDUTPlanScalaBlock.flip baseDUT blocks
+  | setRocketChipDUTPlanTestharness testharness
+  | addFPGADevKitFrequencyConfig frequency
 
 publish vivadoVsrcHooks =
   def makeSource file _ = source file, Nil
