@@ -1,6 +1,6 @@
 [
     {
-        "commit": "50b9d6ffdfbff683fa25045d7f1ef3585a34f2dc",
+        "commit": "6043751aecc84fa77d48fe1d128baf80e23cccdf",
         "name": "api-generator-sifive",
         "source": "git@github.com:sifive/api-generator-sifive.git"
     },
@@ -18,5 +18,10 @@
         "commit": "228c9a4b7432ac52178d63b8f27fe064aec71e9c",
         "name": "firrtl",
         "source": "git@github.com:freechipsproject/firrtl.git"
+    },
+    {
+        "commit": "4656fa1de13b218826ae6ec16d5843bbf21c33da",
+        "name": "soc-freedom-sifive",
+        "source": "git@github.com:sifive/soc-freedom-sifive.git"
     }
 ]

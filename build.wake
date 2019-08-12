@@ -48,3 +48,38 @@ global def testfilePlusargBootloader =
     makeSingleStageBootLoader programLoader score
 
   bootloader
+
+global def fpgaTestSocketScalaModule =
+  def name = "fpgaTestSocket"
+  def scalaVersion = rocketchipScalaModule.getScalaModuleScalaVersion
+  def rootDir = simplify "{here}/design/craft/fpga-test-socket"
+  makeScalaModule name rootDir scalaVersion
+  | setScalaModuleSourceDirs ("src", Nil)
+  | setScalaModuleResourceDirs Nil
+  | setScalaModuleDeps (
+    u500ScalaModule,
+    sifiveSkeletonScalaModule,
+    rocketchipScalaModule,
+    Nil
+  )
+  | setScalaModuleScalacOptions ("-Xsource:2.11", Nil)
+
+global def makeVC707TestSocketDUT name frequency blocks =
+  def configs =
+    "sifive.testsocket.fpga.FPGATestSocketConfig",
+    "sifive.testsocket.fpga.WithTestSocketFPGADevKitDesign",
+    Nil
+  def scalaModule = fpgaTestSocketScalaModule
+  def testharness = "sifive.fpgashells.shell.xilinx.VC707Shell"
+  def baseDUT =
+    makeRocketChipDUTPlan name scalaModule testharness ""
+    | setRocketChipDUTPlanConfigs configs
+  foldl addRocketChipDUTPlanScalaBlock.flip baseDUT blocks
+  | setRocketChipDUTPlanTestharness testharness
+  | addFPGADevKitFrequencyConfig frequency
+
+publish vivadoVsrcHooks =
+  def makeSource file _ = source file, Nil
+  makeBlackBoxHook "PowerOnResetFPGAOnly" "fpga-shells/xilinx/common/vsrc/PowerOnResetFPGAOnly.v".makeSource,
+  makeBlackBoxHook "EICG_wrapper" "rocket-chip/src/main/resources/vsrc/EICG_wrapper.v".makeSource,
+  Nil
