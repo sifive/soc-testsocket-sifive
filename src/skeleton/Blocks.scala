@@ -6,6 +6,7 @@ import freechips.rocketchip.diplomacy._
 import freechips.rocketchip.interrupts._
 import freechips.rocketchip.tilelink._
 import freechips.rocketchip.subsystem._
+import freechips.rocketchip.diplomaticobjectmodel.logicaltree.LogicalTreeNode
 
 case class BlockAttachParams(
   fbus: TLBusWrapper,
@@ -13,6 +14,7 @@ case class BlockAttachParams(
   pbus: TLBusWrapper,
   ibus: IntInwardNode,
   testHarness: LazyScope,
+  parentNode: LogicalTreeNode,
   )(implicit val p: Parameters)
 
 case class BlockDescriptor(

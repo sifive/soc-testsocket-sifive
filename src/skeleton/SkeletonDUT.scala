@@ -40,7 +40,8 @@ class SkeletonDUT(harness: LazyScope)(implicit p: Parameters) extends RocketSubs
     mbus = mbus,
     pbus = pbus,
     ibus = ibus.fromSync,
-    testHarness = harness)
+    testHarness = harness,
+    parentNode = logicalTreeNode)
 
   p(BlockDescriptorKey).foreach { block => block.place(attachParams) }
 
