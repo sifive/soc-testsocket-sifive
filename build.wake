@@ -35,6 +35,30 @@ global def makeBlockTest name block program plusargs =
       None   = False
   makeDUTTest name dutFilter program bootloader plusargs
 
+target findOMDevice deviceType objectModel =
+  def types = JArray (
+    JString deviceType,
+    JString "OMDevice",
+    JString "OMComponent",
+    JString "OMCompoundType",
+    Nil
+  )
+
+  def isBlock jValue = match jValue
+    JObject fields = exists (_.getPairSecond ==/ types) fields
+    _ = False
+
+  objectModel
+  /../ isBlock
+  | getJArray
+  | getOrElse Nil
+  | (!empty _)
+
+global def makeOMBlockTest name deviceType program plusargs =
+  def bootloader = testfilePlusargBootloader
+  def dutFilter dut = findOMDevice deviceType dut.getDUTObjectModel
+  makeDUTTest name dutFilter program bootloader plusargs
+
 global def testfilePlusargBootloader =
   def programLoader =
     def plusarg = "testfile"
