@@ -85,7 +85,7 @@ abstract class TestFinisher(busWidthBytes: Int, c: TestFinisherParams)(implicit 
         RegField.w(32, RegWriteFn((valid, data) => {
           blackbox.io.valid := valid
           blackbox.io.status := data
-          Bool(true)}), RegFieldDesc("finisher","Finish with status")))))
+          true.B}), RegFieldDesc("finisher","Finish with status")))))
   }
 }
 

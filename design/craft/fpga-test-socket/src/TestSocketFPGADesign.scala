@@ -15,7 +15,8 @@ class TestSocketDevKitWrapper()(implicit p: Parameters) extends DevKitWrapper()(
       mbus = topMod.mbus,
       pbus = topMod.pbus,
       ibus = topMod.ibus.fromSync,
-      testHarness = harness)
+      testHarness = harness,
+      parentNode = topMod.logicalTreeNode)
 
     p(BlockDescriptorKey).foreach { block => block.place(attachParams) }
   })

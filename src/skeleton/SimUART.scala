@@ -73,7 +73,7 @@ abstract class SimUART(busWidthBytes: Int, c: SimUARTParams)(implicit p: Paramet
         RegField.w(8, RegWriteFn((valid, data) => {
           blackbox.io.valid := valid
           blackbox.io._byte := data
-          Bool(true)}), RegFieldDesc("data","Transmit data")))))
+          true.B}), RegFieldDesc("data","Transmit data")))))
   }
 }
 
