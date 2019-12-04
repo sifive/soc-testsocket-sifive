@@ -49,7 +49,7 @@ case class SimUARTParams(
 abstract class SimUART(busWidthBytes: Int, c: SimUARTParams)(implicit p: Parameters)
     extends RegisterRouter(
       RegisterRouterParams(
-        name = "serial",
+        name = "simSerial",
         compat = Seq("sifive,uart0"),
         base = c.address,
         beatBytes = busWidthBytes))
