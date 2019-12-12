@@ -75,7 +75,7 @@ global def makeOMBlockTest name deviceType program plusargs =
 global def testfilePlusargBootloader =
   def programLoader =
     def plusarg = "testfile"
-    def memoryRegion = "testsocket-main-memory"
+    def memoryRegion = "mem"
     def score = (\_ \_ 1.0)
     def compiler = freedomMetalDUTProgramCompiler
     makePlusargProgramLoader plusarg memoryRegion score compiler
