@@ -15,9 +15,9 @@ class SkeletonTestHarness()(implicit p: Parameters) extends LazyModule with Lazy
     val dutImp = dut.module
 
     // Allow the debug ndreset to reset the dut, but not until the initial reset has completed
-    dutImp.reset := reset.asBool | dutImp.debug.map { debug => AsyncResetReg(debug.ndreset) }.getOrElse(false.B)
+    //dutImp.reset := reset.asBool | dutImp.debug.map { debug => AsyncResetReg(debug.ndreset) }.getOrElse(false.B)
     dutImp.tieOffInterrupts()
-    Debug.connectDebug(dutImp.debug, dutImp.psd, clock, reset.asBool, Wire(Bool()))
+    //Debug.connectDebug(dutImp.debug, dutImp.psd, clock, reset.asBool, Wire(Bool()))
   }
 
 }
