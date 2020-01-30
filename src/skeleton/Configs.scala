@@ -10,12 +10,12 @@ class BaseSkeletonConfig extends Config((site, here, up) => {
   case DebugModuleKey => None
   case BootROMParams => up(BootROMParams, site).copy(hang = 0x10000)
   case RocketTilesKey =>
-    Seq.fill(2)(up(RocketTilesKey, site).map { x =>
+    up(RocketTilesKey, site).map { x =>
       x.copy(
         dcache = x.dcache.map(_.copy(nMMIOs = 7)),
         core = x.core.copy(useVM = false)
       )
-    }).flatten
+    }
 })
 
 class DefaultConfig extends Config(new BaseSkeletonConfig ++ new RCDefaultConfig)
