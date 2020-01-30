@@ -11,12 +11,14 @@ import freechips.rocketchip.devices.tilelink._
 import freechips.rocketchip.util.ECCParams
 
 class SkeletonDUTModuleImp[+L <: SkeletonDUT](_outer: L) extends RocketSubsystemModuleImp(_outer)
+  with HasExtInterruptsModuleImp
     with HasRTCModuleImp
     with HasResetVectorWire {
   global_reset_vector := outer.resetVector.U
 }
 
 class SkeletonDUT(harness: LazyScope)(implicit p: Parameters) extends RocketSubsystem
+  with HasSyncExtInterrupts
 {
   sbus.crossToBus(cbus, NoCrossing)
   cbus.crossToBus(pbus, SynchronousCrossing())
@@ -45,7 +47,6 @@ class SkeletonDUT(harness: LazyScope)(implicit p: Parameters) extends RocketSubs
   ))
 
   main_mem_sram.node := TLFragmenter(mbus) := mbus.toDRAMController(Some("main_mem_sram"))()
-
 
   val attachParams = BlockAttachParams(
     fbus = fbus,
