@@ -49,6 +49,7 @@ class SkeletonDUT(harness: LazyScope)(implicit p: Parameters) extends RocketSubs
 
 
   val attachParams = BlockAttachParams(
+    sbus = Some(sbus),
     fbus = fbus,
     mbus = mbus,
     pbus = pbus,
