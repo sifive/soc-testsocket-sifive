@@ -9,7 +9,7 @@ import freechips.rocketchip.subsystem._
 import freechips.rocketchip.diplomaticobjectmodel.logicaltree.LogicalTreeNode
 
 case class BlockAttachParams(
-  sbus: TLBusWrapper,	
+  sbus: Option[TLBusWrapper] = None,	
   fbus: TLBusWrapper,
   mbus: TLBusWrapper,
   pbus: TLBusWrapper,
