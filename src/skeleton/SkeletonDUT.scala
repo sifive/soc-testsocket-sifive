@@ -18,6 +18,7 @@ class SkeletonDUTModuleImp[+L <: SkeletonDUT](_outer: L) extends RocketSubsystem
 
 class SkeletonDUT(harness: LazyScope)(implicit p: Parameters) extends RocketSubsystem
 {
+  sbus.clockGroupNode := asyncClockGroupsNode
   sbus.crossToBus(cbus, NoCrossing)
   cbus.crossToBus(pbus, SynchronousCrossing())
   FlipRendering { implicit p => sbus.crossFromBus(fbus, SynchronousCrossing()) }
@@ -28,6 +29,7 @@ class SkeletonDUT(harness: LazyScope)(implicit p: Parameters) extends RocketSubs
     sbus.coupleTo("coherence_manager") { in :*= _ }
     mbus.coupleFrom("coherence_manager") { _ :=* BankBinder(mbus.blockBytes * (nBanks-1)) :*= out }
   }
+  mbus.clockGroupNode := sbus.clockGroupNode
 
   def resetVector: BigInt = 0x80000000L
 
