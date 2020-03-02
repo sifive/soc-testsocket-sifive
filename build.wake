@@ -31,7 +31,15 @@ global def testFinisherBlock =
 global def makeSkeletonDUTPlan name blocks =
   def testharness = "sifive.skeleton.SkeletonTestHarness"
   def config = "sifive.skeleton.DefaultConfig"
+  def customOverlay =
+    def chosenNode =
+      def ram = makeDevicetreeChosenMemoryRam "/soc/mem@80000000" 0 0
+      def entry = makeDevicetreeChosenMemoryEntry "/soc/mem@80000000" 0 0
+      def itim = None
+      makeDevicetreeChosenNode entry ram itim
+    makeDevicetreeCustomOverlay Nil chosenNode
   makeRocketChipDUTPlan name sifiveSkeletonScalaModule testharness config
+  | setRocketChipDUTPlanCustomOverlay (Some customOverlay)
 
 global def makeTestSocketDUT name blocks =
   def baseDUT =
