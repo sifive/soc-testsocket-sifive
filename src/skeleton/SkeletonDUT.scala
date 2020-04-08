@@ -16,7 +16,12 @@ class SkeletonDUTModuleImp[+L <: SkeletonDUT](_outer: L) extends RocketSubsystem
   global_reset_vector := outer.resetVector.U
 }
 
-class SkeletonDUT(harness: LazyScope)(implicit p: Parameters) extends RocketSubsystem
+trait HasAttachedBlocks { this: LazyModule =>
+  def blockAttachParams: BlockAttachParams
+  val attachedBlocks = p(BlockDescriptorKey).map { block => block.place(blockAttachParams) }
+}
+
+class SkeletonDUT(harness: LazyScope)(implicit p: Parameters) extends RocketSubsystem with HasAttachedBlocks
 {
   sbus.crossToBus(cbus, NoCrossing)
   cbus.crossToBus(pbus, SynchronousCrossing())
@@ -46,16 +51,13 @@ class SkeletonDUT(harness: LazyScope)(implicit p: Parameters) extends RocketSubs
 
   main_mem_sram.node := TLFragmenter(mbus) := mbus.toDRAMController(Some("main_mem_sram"))()
 
-
-  val attachParams = BlockAttachParams(
+  def blockAttachParams = BlockAttachParams(
     fbus = fbus,
     mbus = mbus,
     pbus = pbus,
     ibus = ibus.fromSync,
     testHarness = harness,
     parentNode = logicalTreeNode)
-
-  p(BlockDescriptorKey).foreach { block => block.place(attachParams) }
 
   override lazy val module = new SkeletonDUTModuleImp(this)
 }
