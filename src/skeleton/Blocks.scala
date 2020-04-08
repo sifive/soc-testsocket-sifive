@@ -20,6 +20,6 @@ case class BlockAttachParams(
 
 case class BlockDescriptor(
   name:  String,
-  place: BlockAttachParams => Unit)
+  place: BlockAttachParams => Any)
 
 case object BlockDescriptorKey extends Field[Seq[BlockDescriptor]](Nil)
