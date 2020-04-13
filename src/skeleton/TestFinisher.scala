@@ -13,7 +13,7 @@ class TestFinisherBB(val statusFile: String) extends BlackBox(Map(
 )) with HasBlackBoxInline {
   val io = IO(new Bundle {
     val clock = Input(Clock())
-    val reset = Input(Bool())
+    val reset = Input(Reset())
     val valid = Input(Bool())
     val status = Input(UInt(32.W))
   })
