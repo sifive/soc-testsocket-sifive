@@ -13,7 +13,7 @@ class LogFile(val file: String) extends BlackBox(Map(
 )) with HasBlackBoxInline {
   val io = IO(new Bundle {
     val clock = Input(Clock())
-    val reset = Input(Bool())
+    val reset = Input(Reset())
     val valid = Input(Bool())
     val _byte = Input(UInt(8.W))
   })
