@@ -20,6 +20,6 @@ case class BlockAttachParams(
 
 case class BlockDescriptor(
   name:  String,
-  place: BlockAttachParams => Any)
+  place: BlockAttachParams => LazyModule)
 
 case object BlockDescriptorKey extends Field[Seq[BlockDescriptor]](Nil)
