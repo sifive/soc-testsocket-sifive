@@ -17,8 +17,8 @@ class SkeletonDUTModuleImp[+L <: SkeletonDUT](_outer: L) extends RocketSubsystem
 }
 
 trait HasAttachedBlocks { this: LazyModule =>
-  def blockAttachParams: BlockAttachParams
-  val attachedBlocks = p(BlockDescriptorKey).map { block => block.place(blockAttachParams) }
+  def attachParams: BlockAttachParams
+  val attachedBlocks = p(BlockDescriptorKey).map { block => block.place(attachParams) }
 }
 
 class SkeletonDUT(harness: LazyScope)(implicit p: Parameters) extends RocketSubsystem with HasAttachedBlocks
@@ -54,7 +54,7 @@ class SkeletonDUT(harness: LazyScope)(implicit p: Parameters) extends RocketSubs
 
   main_mem_sram.node := TLFragmenter(mbus) := mbus.toDRAMController(Some("main_mem_sram"))()
 
-  def blockAttachParams = BlockAttachParams(
+  def attachParams = BlockAttachParams(
     sbus = Some(sbus),
     fbus = fbus,
     mbus = mbus,

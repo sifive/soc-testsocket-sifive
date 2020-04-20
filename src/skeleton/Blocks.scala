@@ -18,8 +18,8 @@ case class BlockAttachParams(
   parentNode: LogicalTreeNode,
   )(implicit val p: Parameters)
 
-case class BlockDescriptor(
+case class BlockDescriptor[T <: LazyModule](
   name:  String,
-  place: BlockAttachParams => Any)
+  place: BlockAttachParams => T)
 
-case object BlockDescriptorKey extends Field[Seq[BlockDescriptor]](Nil)
+case object BlockDescriptorKey extends Field[Seq[BlockDescriptor[LazyModule]]](Nil)
