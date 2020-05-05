@@ -8,11 +8,12 @@ import freechips.rocketchip.tilelink._
 import freechips.rocketchip.subsystem._
 import freechips.rocketchip.system._
 import freechips.rocketchip.devices.tilelink._
-import freechips.rocketchip.util.ECCParams
+import freechips.rocketchip.util.{DontTouch, ECCParams}
 
 class SkeletonDUTModuleImp[+L <: SkeletonDUT](_outer: L) extends RocketSubsystemModuleImp(_outer)
     with HasRTCModuleImp
-    with HasResetVectorWire {
+    with HasResetVectorWire
+    with DontTouch {
   global_reset_vector := outer.resetVector.U
 }
 
