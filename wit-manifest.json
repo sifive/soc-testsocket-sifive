@@ -10,6 +10,11 @@
         "source": "git@github.com:sifive/sifive-blocks.git"
     },
     {
+        "commit": "21ea734d809395962a8d3195a76377f6e44308f3",
+        "name": "chisel3",
+        "source": "git@github.com:freechipsproject/chisel3.git"
+    },
+    {
         "commit": "4656fa1de13b218826ae6ec16d5843bbf21c33da",
         "name": "soc-freedom-sifive",
         "source": "git@github.com:sifive/soc-freedom-sifive.git"
