@@ -1,23 +1,18 @@
 [
     {
-        "commit": "69c73cfe30525093b4d6d7acec9d5fb854209d13",
+        "commit": "b8ab69142b8e3d63a11ab846f5463bbccbd0a22d",
         "name": "api-generator-sifive",
         "source": "git@github.com:sifive/api-generator-sifive.git"
     },
     {
-        "commit": "fcff9cc0ac5dbd92eb5da5d4b855de22c402c302",
+        "commit": "c1dee8234c23c8fc454108e59ecba20987f95cde",
         "name": "sifive-blocks",
         "source": "git@github.com:sifive/sifive-blocks.git"
     },
     {
-        "commit": "e1aa5f3f5c0cdeb204047c3ca50801d9f7ea25f1",
+        "commit": "21ea734d809395962a8d3195a76377f6e44308f3",
         "name": "chisel3",
         "source": "git@github.com:freechipsproject/chisel3.git"
-    },
-    {
-        "commit": "228c9a4b7432ac52178d63b8f27fe064aec71e9c",
-        "name": "firrtl",
-        "source": "git@github.com:freechipsproject/firrtl.git"
     },
     {
         "commit": "4656fa1de13b218826ae6ec16d5843bbf21c33da",
@@ -25,7 +20,7 @@
         "source": "git@github.com:sifive/soc-freedom-sifive.git"
     },
     {
-        "commit": "a11ee2bac9f6ff6151a63694c8983e4fc8ba1fb2",
+        "commit": "1872f5d501221f13950aa2293939634a1e0d1735",
         "name": "rocket-chip",
         "source": "git@github.com:chipsalliance/rocket-chip.git"
     }

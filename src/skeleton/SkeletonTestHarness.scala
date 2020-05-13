@@ -10,6 +10,7 @@ class SkeletonTestHarness()(implicit p: Parameters) extends LazyModule with Lazy
 {
   val dut = LazyModule(new SkeletonDUT(this))
   lazy val module = new LazyModuleImp(this) {
+    dut.module.dontTouchPorts()
     ConstructOM.constructOM()
     Debug.tieoffDebug(dut.module.debug)
   }

@@ -8,11 +8,12 @@ import freechips.rocketchip.tilelink._
 import freechips.rocketchip.subsystem._
 import freechips.rocketchip.system._
 import freechips.rocketchip.devices.tilelink._
-import freechips.rocketchip.util.ECCParams
+import freechips.rocketchip.util.{DontTouch, ECCParams}
 
 class SkeletonDUTModuleImp[+L <: SkeletonDUT](_outer: L) extends RocketSubsystemModuleImp(_outer)
     with HasRTCModuleImp
-    with HasResetVectorWire {
+    with HasResetVectorWire
+    with DontTouch {
   global_reset_vector := outer.resetVector.U
 }
 
@@ -23,19 +24,6 @@ trait HasAttachedBlocks { this: LazyModule =>
 
 class SkeletonDUT(harness: LazyScope)(implicit p: Parameters) extends RocketSubsystem with HasAttachedBlocks
 {
-  sbus.clockGroupNode := asyncClockGroupsNode
-  sbus.crossToBus(cbus, NoCrossing)
-  cbus.crossToBus(pbus, SynchronousCrossing())
-  FlipRendering { implicit p => sbus.crossFromBus(fbus, SynchronousCrossing()) }
-
-  private val BankedL2Params(nBanks, coherenceManager) = p(BankedL2Key)
-  private val (in, out, halt) = coherenceManager(this)
-  if (nBanks != 0) {
-    sbus.coupleTo("coherence_manager") { in :*= _ }
-    mbus.coupleFrom("coherence_manager") { _ :=* BankBinder(mbus.blockBytes * (nBanks-1)) :*= out }
-  }
-  mbus.clockGroupNode := sbus.clockGroupNode
-
   def resetVector: BigInt = 0x80000000L
 
   // set eccBytes equal to beatBytes so we only generate a single memory
