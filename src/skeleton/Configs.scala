@@ -47,3 +47,17 @@ class WithTestFinisher extends Config((site, here, up) => {
       name = "simTestFinisher",
       place=TestFinisherAttach.attach(TestFinisherParams(0x05000000L, "status.log"))) +: up(BlockDescriptorKey, site)
 })
+
+class WithAdditionalDUTSRAMs(addrs: Seq[AddressSet]) extends Config((site, here, up) => {
+  case BlockDescriptorKey => addrs.zipWithIndex.map { case (addr, idx) =>
+    BlockDescriptor(
+      name = s"benchmarkingSRAM$idx",
+      place = TLRAMAttach.attach(
+        TLRAMParams(
+          name = s"main_mem_sram_$idx",
+          address = addr,
+          devName = Some(s"mem-$idx"),
+          dtsCompat = Some(Seq("memory"))))
+    )
+  } ++ up(BlockDescriptorKey, site)
+})
