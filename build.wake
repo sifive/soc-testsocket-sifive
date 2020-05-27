@@ -47,6 +47,7 @@ global def makeTestSocketDUT name blocks =
     | addRocketChipDUTPlanScalaBlock simUARTBlock
     | addRocketChipDUTPlanScalaBlock testFinisherBlock
   foldl addRocketChipDUTPlanScalaBlock.flip baseDUT blocks
+  | editRocketChipDUTPlanConfigs reverse
 
 global def makeBlockTest name block program plusargs =
   def bootloader = testfilePlusargBootloader
@@ -120,6 +121,7 @@ global def makeVC707TestSocketDUT name frequency blocks =
     makeRocketChipDUTPlan name scalaModule testharness ""
     | setRocketChipDUTPlanConfigs configs
   foldl addRocketChipDUTPlanScalaBlock.flip baseDUT blocks
+  | editRocketChipDUTPlanConfigs reverse
   | setRocketChipDUTPlanTestharness testharness
   | addFPGADevKitFrequencyConfig frequency
 
