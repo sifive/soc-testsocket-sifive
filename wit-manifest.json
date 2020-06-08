@@ -1,6 +1,6 @@
 [
     {
-        "commit": "260dcfefcbe25edd590f98d337e30a0e9ae16ebe",
+        "commit": "466a1cb04e2f92e3a2ae62a4322bc7a6c783d7a9",
         "name": "api-generator-sifive",
         "source": "git@github.com:sifive/api-generator-sifive.git"
     },
