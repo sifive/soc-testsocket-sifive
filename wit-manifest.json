@@ -1,6 +1,6 @@
 [
     {
-        "commit": "466a1cb04e2f92e3a2ae62a4322bc7a6c783d7a9",
+        "commit": "4a6c9c2ecc10cfd6a3b476ba7846fb34a8d759ca",
         "name": "api-generator-sifive",
         "source": "git@github.com:sifive/api-generator-sifive.git"
     },
@@ -20,7 +20,7 @@
         "source": "git@github.com:sifive/soc-freedom-sifive.git"
     },
     {
-        "commit": "0d49ba6c0dcce783eb24cc99639da028ea63b1b3",
+        "commit": "45f3c98e392f8224bd40e189f837f92e6d745b6e",
         "name": "rocket-chip",
         "source": "git@github.com:chipsalliance/rocket-chip.git"
     }
