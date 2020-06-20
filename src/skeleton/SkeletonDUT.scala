@@ -34,7 +34,7 @@ class SkeletonDUT(harness: LazyScope)(implicit p: Parameters) extends RocketSubs
     mbus = mbus,
     pbus = pbus,
     ibus = ibus.fromSync,
-    testHarness = harness,
+    testHarness = Some(harness),
     parentNode = logicalTreeNode)
 
   override lazy val module = new SkeletonDUTModuleImp(this)

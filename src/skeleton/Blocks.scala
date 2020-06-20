@@ -14,7 +14,7 @@ case class BlockAttachParams(
   mbus: TLBusWrapper,
   pbus: TLBusWrapper,
   ibus: IntInwardNode,
-  testHarness: LazyScope,
+  testHarness: Option[LazyScope],
   parentNode: LogicalTreeNode,
   )(implicit val p: Parameters)
 
