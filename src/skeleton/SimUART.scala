@@ -50,7 +50,7 @@ abstract class SimUART(busWidthBytes: Int, c: SimUARTParams)(implicit p: Paramet
     extends RegisterRouter(
       RegisterRouterParams(
         name = "simSerial",
-        compat = Seq("sifive,uart0"),
+        compat = Seq("sifive,simuart0"),
         base = c.address,
         beatBytes = busWidthBytes))
     with HasInterruptSources
