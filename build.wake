@@ -128,7 +128,7 @@ global def makeVC707TestSocketDUT name frequency blocks =
 publish vivadoVsrcHooks =
   def makeSource file _ = source file, Nil
   makeBlackBoxHook "PowerOnResetFPGAOnly" "fpga-shells/xilinx/common/vsrc/PowerOnResetFPGAOnly.v".makeSource,
-  makeBlackBoxHook "EICG_wrapper" "rocket-chip/src/main/resources/vsrc/EICG_wrapper.v".makeSource,
+  makeBlackBoxHook "EICG_wrapper" "{rocketChipRoot}/src/main/resources/vsrc/EICG_wrapper.v".makeSource,
   makeBlackBoxHook "AnalogToUInt" "fpga-shells/xilinx/common/vsrc/AnalogToUInt.v".makeSource,
   makeBlackBoxHook "UIntToAnalog" "fpga-shells/xilinx/common/vsrc/UIntToAnalog.v".makeSource,
   Nil

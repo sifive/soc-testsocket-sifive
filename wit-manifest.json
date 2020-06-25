@@ -20,7 +20,7 @@
         "source": "git@github.com:sifive/soc-freedom-sifive.git"
     },
     {
-        "commit": "45f3c98e392f8224bd40e189f837f92e6d745b6e",
+        "commit": "5ede0829b7a926ffa29d2df8238dbfe44065128c",
         "name": "rocket-chip",
         "source": "git@github.com:chipsalliance/rocket-chip.git"
     }
