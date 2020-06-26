@@ -13,5 +13,8 @@ class SkeletonTestHarness()(implicit p: Parameters) extends LazyModule with Lazy
     dut.module.dontTouchPorts()
     ConstructOM.constructOM()
     Debug.tieoffDebug(dut.module.debug)
+
+    dut.module.reset_vector.foreach { _ := p(SkeletonResetVector).U }
+
   }
 }

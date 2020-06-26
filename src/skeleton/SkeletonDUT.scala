@@ -14,10 +14,7 @@ case object SkeletonResetVector extends Field[BigInt](0x80000000L)
 
 class SkeletonDUTModuleImp[+L <: SkeletonDUT](_outer: L) extends RocketSubsystemModuleImp(_outer)
     with HasRTCModuleImp
-    with HasResetVectorWire
-    with DontTouch {
-  global_reset_vector := outer.resetVector.U
-}
+    with DontTouch
 
 trait HasAttachedBlocks { this: LazyModule =>
   def attachParams: BlockAttachParams
