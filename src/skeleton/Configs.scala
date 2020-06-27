@@ -1,16 +1,18 @@
 package sifive.skeleton
 
 import freechips.rocketchip.config.{Config, Field}
-import freechips.rocketchip.devices.tilelink.BootROMParams
+import freechips.rocketchip.devices.tilelink.BootROMLocated
+import freechips.rocketchip.subsystem.InSubsystem
 import freechips.rocketchip.diplomacy.{AddressSet}
 import freechips.rocketchip.system.{DefaultConfig => RCDefaultConfig}
-import freechips.rocketchip.subsystem.RocketTilesKey
+import freechips.rocketchip.subsystem.{RocketTilesKey, InSubsystem, SubsystemExternalResetVectorKey}
 import freechips.rocketchip.diplomacy.LazyScope
 
 case object TestHarnessScope extends Field[Option[LazyScope]](None)
 
 class BaseSkeletonConfig extends Config((site, here, up) => {
-  case BootROMParams => up(BootROMParams, site).copy(hang = 0x10000)
+  case BootROMLocated(InSubsystem) => up(BootROMLocated(InSubsystem), site).map(_.copy(hang = 0x10000))
+  case SubsystemExternalResetVectorKey => true
   case RocketTilesKey =>
     up(RocketTilesKey, site).map { x =>
       x.copy(
