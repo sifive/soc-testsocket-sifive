@@ -15,7 +15,7 @@
         "source": "git@github.com:freechipsproject/chisel3.git"
     },
     {
-        "commit": "4656fa1de13b218826ae6ec16d5843bbf21c33da",
+        "commit": "5906b51518f4c2d861c8e77ec997b705a97c016e",
         "name": "soc-freedom-sifive",
         "source": "git@github.com:sifive/soc-freedom-sifive.git"
     },
