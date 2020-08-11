@@ -1,17 +1,3 @@
-# Borrowed from future wake; can be removed once we've migrated to wake 0.16
-def root /../ filterFn = jfind filterFn root
-def jfind filterFn root =
-  def helper node acc = match node
-    JArray l =
-      def tail = foldr helper acc l
-      if filterFn node then node, tail else tail
-    JObject l =
-      def tail = foldr (helper _.getPairSecond _) acc l
-      if filterFn node then node, tail else tail
-    _ =
-      if filterFn node then node, acc else acc
-  helper root Nil | JArray
-
 global def sifiveSkeletonScalaModule =
   makeScalaModuleFromJSON here "sifiveSkeleton"
   | setScalaModuleSourceDirs ("src", Nil)
@@ -28,7 +14,7 @@ global def testFinisherBlock =
   def config = "sifive.skeleton.WithTestFinisher"
   makeScalaBlock module config
 
-global def makeSkeletonDUTPlan name blocks =
+global def makeSkeletonDUTPlan name _blocks =
   def testharness = "sifive.skeleton.SkeletonTestHarness"
   def config = "sifive.skeleton.DefaultConfig"
   def customOverlay =
