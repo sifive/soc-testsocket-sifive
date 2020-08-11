@@ -5,7 +5,7 @@
         "source": "git@github.com:sifive/api-generator-sifive.git"
     },
     {
-        "commit": "4c50f5e1bafc366d9c9f32a55a1ddcf26e57c9db",
+        "commit": "35ea7503d55261ea99e1b17ebeaf7e5da1457dbf",
         "name": "soc-freedom-sifive",
         "source": "git@github.com:sifive/soc-freedom-sifive.git"
     }
