@@ -28,7 +28,7 @@ global def testFinisherBlock =
   def config = "sifive.skeleton.WithTestFinisher"
   makeScalaBlock module config
 
-global def makeSkeletonDUTPlan name blocks =
+global def makeSkeletonDUTPlan name _blocks =
   def testharness = "sifive.skeleton.SkeletonTestHarness"
   def config = "sifive.skeleton.DefaultConfig"
   def customOverlay =
