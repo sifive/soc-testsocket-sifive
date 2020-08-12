@@ -1,11 +1,6 @@
 [
     {
-        "commit": "fa51d4947d44efbd2278949624341720142e3327",
-        "name": "api-generator-sifive",
-        "source": "git@github.com:sifive/api-generator-sifive.git"
-    },
-    {
-        "commit": "35ea7503d55261ea99e1b17ebeaf7e5da1457dbf",
+        "commit": "9961c82d62797c38c9dbd4c3f55ae1195df44ff5",
         "name": "soc-freedom-sifive",
         "source": "git@github.com:sifive/soc-freedom-sifive.git"
     }
