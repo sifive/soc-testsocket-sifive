@@ -1,12 +1,13 @@
 package sifive.testsocket.fpga
 
 import freechips.rocketchip.config.{Parameters, Config}
+import freechips.rocketchip.system.{DefaultConfig => RCDefaultConfig}
 
 import sifive.blocks.devices.gpio.{PeripheryGPIOKey, GPIOParams}
 import sifive.blocks.devices.spi.{PeripherySPIKey, SPIParams}
 import sifive.blocks.devices.uart.{PeripheryUARTKey, UARTParams}
 import freechips.rocketchip.subsystem._
-import sifive.skeleton.DefaultConfig
+import sifive.skeleton.BaseSkeletonConfig
 
 import sifive.fpgashells.shell.DesignKey
 
@@ -23,8 +24,9 @@ class FPGATestSocketConfig extends Config(
   new WithNExtTopInterrupts(0)
   ++ new WithJtagDTM
   ++ new WithNMemoryChannels(1)
-  ++ new DefaultConfig
   ++ new FPGATestSocketPeripherals
+  ++ new BaseSkeletonConfig
+  ++ new RCDefaultConfig
 )
 
 class WithTestSocketFPGADevKitDesign extends Config((site, here, up) => {
