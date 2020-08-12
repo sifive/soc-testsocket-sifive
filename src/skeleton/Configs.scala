@@ -20,6 +20,9 @@ class BaseSkeletonConfig extends Config((site, here, up) => {
         core = x.core.copy(useVM = false)
       )
     }
+})
+
+class MemorySRAM extends Config((site, here, up) => {
   case BlockDescriptorKey =>
     BlockDescriptor(
       name = "testProgramSRAM",
@@ -35,7 +38,7 @@ class BaseSkeletonConfig extends Config((site, here, up) => {
     ) +: up(BlockDescriptorKey, site)
 })
 
-class DefaultConfig extends Config(new BaseSkeletonConfig ++ new RCDefaultConfig)
+class DefaultConfig extends Config(new MemorySRAM ++ new BaseSkeletonConfig ++ new RCDefaultConfig)
 
 /// FOR CI integration tests only
 class WithSimUART extends Config((site, here, up) => {

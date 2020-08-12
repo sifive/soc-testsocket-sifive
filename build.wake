@@ -102,7 +102,7 @@ global def makeVC707TestSocketDUT name frequency blocks =
     "sifive.testsocket.fpga.WithTestSocketFPGADevKitDesign",
     Nil
   def scalaModule = fpgaTestSocketScalaModule
-  def testharness = "sifive.fpgashells.shell.xilinx.VC707Shell"
+  def testharness = "sifive.fpgashells.shell.xilinx.VC707PCIeShell"
   def baseDUT =
     makeRocketChipDUTPlan name scalaModule testharness ""
     | setRocketChipDUTPlanConfigs configs
