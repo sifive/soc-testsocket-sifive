@@ -22,7 +22,7 @@ jobs:
     - name: Compile
       uses: sifive/environment-blockci-sifive/actions/wake@0.7.0
       with:
-        command: -x 'makeRTL (makeTestSocketDUT "noop" Nil)'
+        command: -x 'makeRTL (makeTestSocketDUT "noop" Nil) | getDUTVsrcs | findFailFn getPathResult'
 
   test-vc707-test-socket:
     name: Compile VC707TestSocketDUT
@@ -37,7 +37,7 @@ jobs:
     - name: Compile
       uses: sifive/environment-blockci-sifive/actions/wake@0.7.0
       with:
-        command: -x 'makeRTL (makeVC707TestSocketDUT "noop" 50 Nil)'
+        command: -x 'makeRTL (makeVC707TestSocketDUT "noop" 50 Nil) | getDUTVsrcs | findFailFn getPathResult'
 
   lint:
     name: Lint
