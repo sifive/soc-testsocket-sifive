@@ -35,14 +35,6 @@ global def makeTestSocketDUT name blocks =
   foldl addRocketChipDUTPlanScalaBlock.flip baseDUT blocks
   | editRocketChipDUTPlanConfigs reverse
 
-global def makeBlockTest name block program plusargs =
-  def bootloader = testfilePlusargBootloader
-  def dutFilter dut =
-    match (find (block.getScalaBlockConfig ==~ _) dut.getDUTConfigs)
-      Some _ = True
-      None   = False
-  makeDUTTest name dutFilter program bootloader plusargs
-
 target findOMDevice deviceType objectModel =
   def types = JArray (
     JString deviceType,
@@ -61,25 +53,6 @@ target findOMDevice deviceType objectModel =
   | getJArray
   | getOrElse Nil
   | (!empty _)
-
-global def makeOMBlockTest name deviceType program plusargs =
-  def bootloader = testfilePlusargBootloader
-  def dutFilter dut = findOMDevice deviceType dut.getDUTObjectModel
-  makeDUTTest name dutFilter program bootloader plusargs
-
-global def testfilePlusargBootloader =
-  def programLoader =
-    def plusarg = "testfile"
-    def memoryRegion = "mem"
-    def score = (\_ \_ 1.0)
-    def compiler = freedomMetalDUTProgramCompiler
-    makePlusargProgramLoader plusarg memoryRegion score compiler
-
-  def bootloader =
-    def score = (\_ \_ 1.0)
-    makeSingleStageBootLoader programLoader score
-
-  bootloader
 
 global def fpgaTestSocketScalaModule =
   def name = "fpgaTestSocket"
