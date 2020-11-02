@@ -1,7 +1,7 @@
 [
     {
-        "commit": "9961c82d62797c38c9dbd4c3f55ae1195df44ff5",
+        "commit": "a07f2ae4e30259c6ff3b9f0f3cd08baabb4c1503",
         "name": "soc-freedom-sifive",
-        "source": "git@github.com:sifive/soc-freedom-sifive.git"
+        "source": "git@github.com:zizztux/soc-freedom-sifive.git"
     }
 ]
