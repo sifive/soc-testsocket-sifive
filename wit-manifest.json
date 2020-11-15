@@ -1,6 +1,6 @@
 [
     {
-        "commit": "9961c82d62797c38c9dbd4c3f55ae1195df44ff5",
+        "commit": "b83251356f73e07e344a5e562f2c4b122699440a",
         "name": "soc-freedom-sifive",
         "source": "git@github.com:sifive/soc-freedom-sifive.git"
     }
